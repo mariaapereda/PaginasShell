@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PaginasShell"
+             x:Class="PaginasShell.CestaPage"
+             Title="Cesta">
+
+    <Grid RowDefinitions="Auto,*,Auto" RowSpacing="14" Padding="20,16" MaximumWidthRequest="680">
+
+        <VerticalStackLayout Grid.Row="0" Spacing="4">
+            <Label Text="Mi cesta"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="{StaticResource Marino}"
+                   SemanticProperties.HeadingLevel="Level1" />
+            <Label x:Name="lblArticulos" Style="{StaticResource Rotulo}" />
+        </VerticalStackLayout>
+
+        <CollectionView Grid.Row="1"
+                        x:Name="cvCesta"
+                        SelectionMode="None"
+                        SemanticProperties.Description="Productos añadidos a la cesta">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.EmptyView>
+                <VerticalStackLayout HorizontalOptions="Center" Margin="0,30" Spacing="10">
+                    <Image Source="cesta_vacia.png" HeightRequest="110" />
+                    <Label Text="Tu cesta está vacía" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center" />
+                    <Label Text="Elige un producto y pulsa Añadir a la cesta"
+                           FontSize="14"
+                           TextColor="{StaticResource TintaSuave}"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="local:LineaCesta">
+                    <Border Style="{StaticResource Tarjeta}" Padding="12">
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="12">
+                            <Image Source="{Binding Producto.Imagen}"
+                                   WidthRequest="54"
+                                   HeightRequest="54"
+                                   VerticalOptions="Center" />
+
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                                <Label Text="{Binding Producto.Nombre}" FontSize="17" FontAttributes="Bold" />
+                                <Label Text="{Binding TextoCantidad}"
+                                       FontFamily="{StaticResource FuenteMaquina}"
+                                       FontSize="14"
+                                       TextColor="{StaticResource TintaSuave}" />
+                            </VerticalStackLayout>
+
+                            <VerticalStackLayout Grid.Column="2" VerticalOptions="Center" Spacing="6">
+                                <Label Text="{Binding SubtotalTexto}"
+                                       FontFamily="{StaticResource FuenteMaquina}"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="End" />
+                                <Button Text="Quitar"
+                                        Style="{StaticResource BotonSecundario}"
+                                        FontSize="14"
+                                        Padding="14,4"
+                                        MinimumHeightRequest="36"
+                                        Clicked="btnQuitar_Clicked" />
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Border Grid.Row="2"
+                BackgroundColor="{StaticResource Marino}"
+                StrokeThickness="0"
+                StrokeShape="RoundRectangle 14"
+                Padding="18,14">
+            <VerticalStackLayout Spacing="12">
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label Text="TOTAL"
+                           FontFamily="{StaticResource FuenteMaquina}"
+                           FontSize="16"
+                           CharacterSpacing="3"
+                           TextColor="{StaticResource AzulPolvo}"
+                           VerticalOptions="Center" />
+                    <Label Grid.Column="1"
+                           x:Name="lblTotal"
+                           FontFamily="{StaticResource FuenteMaquina}"
+                           FontSize="26"
+                           FontAttributes="Bold"
+                           TextColor="{StaticResource Crema}" />
+                </Grid>
+                <Grid x:Name="grdBotones" ColumnDefinitions="*,*" ColumnSpacing="10">
+                    <Button x:Name="btnVaciar"
+                            Text="Vaciar cesta"
+                            BackgroundColor="Transparent"
+                            TextColor="{StaticResource Crema}"
+                            BorderColor="{StaticResource AzulPolvo}"
+                            Clicked="btnVaciar_Clicked" />
+                    <Button Grid.Column="1"
+                            x:Name="btnPedido"
+                            Text="Hacer pedido"
+                            BackgroundColor="{StaticResource Crema}"
+                            TextColor="{StaticResource Marino}"
+                            Clicked="btnPedido_Clicked" />
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+    </Grid>
+</ContentPage>

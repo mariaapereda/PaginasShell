@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:PaginasShell"
+             x:Class="PaginasShell.ProductosPage"
+             Title="Productos">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Ayuda" Clicked="btnAyuda_Clicked" />
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="Auto,Auto,Auto,*" RowSpacing="12" Padding="20,16" MaximumWidthRequest="720">
+
+        <Grid Grid.Row="0" ColumnDefinitions="Auto,*" ColumnSpacing="14">
+            <Image Source="logo_tienda.png"
+                   WidthRequest="70"
+                   HeightRequest="70"
+                   SemanticProperties.Description="Logotipo de la papelería" />
+            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center">
+                <Label Text="PAPELERÍA · DESDE 1924" Style="{StaticResource Rotulo}" />
+                <Label Text="La Pluma Azul"
+                       FontSize="30"
+                       FontAttributes="Bold"
+                       TextColor="{StaticResource Marino}"
+                       SemanticProperties.HeadingLevel="Level1" />
+            </VerticalStackLayout>
+        </Grid>
+
+        <Border Grid.Row="1" Style="{StaticResource MarcoCampo}" StrokeShape="RoundRectangle 20">
+            <SearchBar x:Name="sbBuscar"
+                       Placeholder="Buscar producto..."
+                       TextChanged="sbBuscar_TextChanged"
+                       SemanticProperties.Hint="Filtra los productos por nombre" />
+        </Border>
+
+        <Grid Grid.Row="2" ColumnDefinitions="*,Auto">
+            <Label x:Name="lblTotal" Style="{StaticResource Rotulo}" VerticalOptions="Center" />
+            <ActivityIndicator Grid.Column="1"
+                               x:Name="indCarga"
+                               IsRunning="True"
+                               Color="{StaticResource AzulVintage}"
+                               WidthRequest="22"
+                               HeightRequest="22" />
+        </Grid>
+
+        <CollectionView Grid.Row="3"
+                        x:Name="cvProductos"
+                        SelectionMode="Single"
+                        SelectionChanged="cvProductos_SelectionChanged"
+                        SemanticProperties.Description="Lista de productos. Pulsa uno para ver sus detalles">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.EmptyView>
+                <VerticalStackLayout HorizontalOptions="Center" Margin="0,40" Spacing="6">
+                    <Label Text="No hay productos con ese nombre" FontAttributes="Bold" HorizontalOptions="Center" />
+                    <Label Text="Revisa lo que has escrito o borra la búsqueda"
+                           FontSize="14"
+                           TextColor="{StaticResource TintaSuave}"
+                           HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="local:Producto">
+                    <Border BackgroundColor="{StaticResource Crema}"
+                            Stroke="{StaticResource PapelOscuro}"
+                            StrokeThickness="1.5"
+                            StrokeShape="RoundRectangle 12"
+                            Padding="12">
+                        <VisualStateManager.VisualStateGroups>
+                            <VisualStateGroup x:Name="CommonStates">
+                                <VisualState x:Name="Normal" />
+                                <VisualState x:Name="Selected">
+                                    <VisualState.Setters>
+                                        <Setter Property="BackgroundColor" Value="{StaticResource AzulNiebla}" />
+                                        <Setter Property="Stroke" Value="{StaticResource AzulVintage}" />
+                                    </VisualState.Setters>
+                                </VisualState>
+                            </VisualStateGroup>
+                        </VisualStateManager.VisualStateGroups>
+
+                        <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="14">
+                            <Image Source="{Binding Imagen}"
+                                   WidthRequest="64"
+                                   HeightRequest="64"
+                                   VerticalOptions="Center" />
+
+                            <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="2">
+                                <Label Text="{Binding Nombre}" FontSize="18" FontAttributes="Bold" />
+                                <Label Text="{Binding Descripcion}"
+                                       FontSize="13"
+                                       TextColor="{StaticResource TintaSuave}"
+                                       MaxLines="1"
+                                       LineBreakMode="TailTruncation" />
+                            </VerticalStackLayout>
+
+                            <Border Grid.Column="2" Style="{StaticResource Etiqueta}" VerticalOptions="Center">
+                                <Label Text="{Binding PrecioTexto}"
+                                       FontFamily="{StaticResource FuenteMaquina}"
+                                       FontSize="15"
+                                       FontAttributes="Bold"
+                                       TextColor="{StaticResource Crema}" />
+                            </Border>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

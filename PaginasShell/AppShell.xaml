@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell x:Class="PaginasShell.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:PaginasShell"
+       Title="Papelería La Pluma Azul"
+       Shell.FlyoutBehavior="Disabled"
+       Shell.BackgroundColor="{StaticResource Marino}"
+       Shell.ForegroundColor="{StaticResource Crema}"
+       Shell.TitleColor="{StaticResource Crema}"
+       Shell.TabBarBackgroundColor="{StaticResource Marino}"
+       Shell.TabBarForegroundColor="{StaticResource Crema}"
+       Shell.TabBarTitleColor="{StaticResource Crema}"
+       Shell.TabBarUnselectedColor="{StaticResource AzulPolvo}">
+
+    <TabBar>
+        <ShellContent Title="Productos"
+                      Route="productos"
+                      ContentTemplate="{DataTemplate local:ProductosPage}" />
+
+        <ShellContent Title="Detalles"
+                      Route="detalles"
+                      ContentTemplate="{DataTemplate local:DetallesPage}" />
+
+        <ShellContent Title="Cesta"
+                      Route="cesta"
+                      ContentTemplate="{DataTemplate local:CestaPage}" />
+    </TabBar>
+
+</Shell>

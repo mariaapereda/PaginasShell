@@ -1,0 +1,6 @@
+1#Pluma estilográfica#Pluma de plumín de acero con el cuerpo azul marino. Se recarga con tinta embotellada y es perfecta para escribir cartas y diarios.#24.90#pluma.png
+2#Tintero azul real#Frasco de cristal de 50 ml con tinta azul real de secado rápido, como la que se usaba en las escuelas de antes.#8.50#tintero.png
+3#Cuaderno de tapas de tela#Cuaderno de 120 hojas de papel color crema con las tapas forradas en tela azul y una cinta para marcar la página.#12.75#cuaderno.png
+4#Sello de lacre#Sello de latón con mango de madera y dos barras de lacre azul para cerrar cartas e invitaciones con un toque clásico.#15.00#lacre.png
+5#Juego de postales antiguas#Seis postales con ilustraciones de ciudades de principios del siglo XX, impresas en tonos azules sobre cartulina.#6.20#postales.png
+6#Máquina de escribir portátil#Máquina restaurada de los años cincuenta con su maletín original y una cinta nueva de tinta azul y negra.#189.00#maquina.png

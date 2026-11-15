@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PaginasShell.DetallesPage"
+             Title="Detalles">
+
+    <ScrollView>
+        <Grid Padding="20,16" MaximumWidthRequest="620">
+
+            <VerticalStackLayout x:Name="vslSinProducto"
+                                 IsVisible="False"
+                                 Spacing="12"
+                                 Margin="0,40,0,0"
+                                 HorizontalOptions="Center">
+                <Image Source="logo_tienda.png" HeightRequest="110" Opacity="0.6" />
+                <Label Text="Todavía no has elegido ningún producto"
+                       FontSize="18"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center" />
+                <Label Text="Ve a la pestaña Productos y pulsa el que quieras ver."
+                       FontSize="14"
+                       TextColor="{StaticResource TintaSuave}"
+                       HorizontalTextAlignment="Center" />
+                <Button Text="Ir a productos" Clicked="btnIrProductos_Clicked" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout x:Name="vslProducto" Spacing="16">
+
+                <Border BackgroundColor="{StaticResource Crema}"
+                        Stroke="{StaticResource Marino}"
+                        StrokeThickness="2"
+                        StrokeShape="RoundRectangle 16"
+                        Padding="22">
+                    <Border.Shadow>
+                        <Shadow Brush="Black" Opacity="0.2" Radius="10" Offset="2,4" />
+                    </Border.Shadow>
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="FICHA DEL PRODUCTO" Style="{StaticResource Rotulo}" HorizontalOptions="Center" />
+                        <Image x:Name="imgProducto" HeightRequest="150" />
+                        <Label x:Name="lblNombre"
+                               FontSize="28"
+                               FontAttributes="Bold"
+                               TextColor="{StaticResource Marino}"
+                               HorizontalTextAlignment="Center"
+                               SemanticProperties.HeadingLevel="Level1" />
+                        <Border Style="{StaticResource Etiqueta}" HorizontalOptions="Center">
+                            <Label x:Name="lblPrecio"
+                                   FontFamily="{StaticResource FuenteMaquina}"
+                                   FontSize="20"
+                                   FontAttributes="Bold"
+                                   TextColor="{StaticResource Crema}" />
+                        </Border>
+                        <BoxView HeightRequest="1" Color="{StaticResource PapelOscuro}" />
+                        <Label x:Name="lblDescripcion" FontSize="16" LineHeight="1.3" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource Tarjeta}">
+                    <VerticalStackLayout Spacing="10">
+                        <Grid ColumnDefinitions="*,Auto">
+                            <VerticalStackLayout VerticalOptions="Center">
+                                <Label Text="CANTIDAD" Style="{StaticResource Rotulo}" />
+                                <Label x:Name="lblCantidad" FontSize="18" FontAttributes="Bold" />
+                            </VerticalStackLayout>
+                            <Stepper Grid.Column="1"
+                                     x:Name="stpCantidad"
+                                     Minimum="1"
+                                     Maximum="10"
+                                     Increment="1"
+                                     Value="1"
+                                     VerticalOptions="Center"
+                                     ValueChanged="stpCantidad_ValueChanged"
+                                     SemanticProperties.Description="Elegir cantidad, de 1 a 10" />
+                        </Grid>
+                        <Label x:Name="lblSubtotal"
+                               FontSize="14"
+                               TextColor="{StaticResource TintaSuave}" />
+                        <Button Text="Añadir a la cesta" Clicked="btnAnadir_Clicked" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Button Text="Volver a productos"
+                        Style="{StaticResource BotonSecundario}"
+                        Clicked="btnIrProductos_Clicked" />
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
+</ContentPage>
